@@ -5,6 +5,7 @@
 }
 html {
   font-family: arial;
+  background: rgba(0, 0, 0, 0.85);
 }
 button {
   all: unset;
@@ -26,8 +27,9 @@ button {
   align-items: center;
   gap: 3em;
 
-  background: #f0f4ff;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ7YzZ7U3iiva4eGc4v-hQH3KuKtAzF23kyFVKuf8Z08tzNP5gA8WdCJEJrUagA4558fs&usqp=CAU");
   border-radius: 0.5rem;
+  box-shadow: 0 0 50px black;
 }
 .timer-wrapper {
   width: 100%;
@@ -46,6 +48,7 @@ button {
   font-size: 1rem;
 }
 .timer-button {
+  user-select: none;
 }
 .start-button {
   width: 8em;
@@ -63,19 +66,27 @@ button {
 }
 .click-button {
   position: relative;
+  z-index: 1;
   width: 60%;
   aspect-ratio: 1/1;
   border-radius: 50%;
   text-align: center;
   font-size: clamp(1.75rem, 4vw, 3rem);
-  color: white;
   background: rgb(238, 43, 43);
   box-shadow: inset 10px 10px 10px 5px rgba(255, 255, 255, 0.5),
-    inset -10px -10px 10px 5px rgba(0, 0, 0, 0.75);
+    inset -10px -10px 10px 5px rgba(0, 0, 0, 0.75), 0 0 10px black;
   transition-timing-function: steps(2);
+}
+.click-button p {
+  position: relative;
+  z-index: 2;
+  color: white;
 }
 .click-button:active {
   scale: 0.95;
+}
+.app:has(.click-button:active) .score {
+  translate: 0 10%;
 }
 .click-button::before {
   content: "";
@@ -86,13 +97,15 @@ button {
   aspect-ratio: 1/1;
   border-radius: 50%;
   filter: blur(5px);
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.16);
 }
 .score {
   text-align: center;
   font-size: clamp(1.75rem, 3vw, 3rem);
 }
-
+.not-finished {
+  font-size: 3rem;
+}
 @media screen and (max-width: 500px) {
   .app {
     width: 100%;
